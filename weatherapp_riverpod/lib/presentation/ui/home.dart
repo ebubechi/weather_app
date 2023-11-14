@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // import 'package:weatherapp_riverpod/core/models/weather.dart';
 import 'package:dio/dio.dart';
 import 'package:weatherapp_riverpod/core/models/weather.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 // import 'package:http/http.dart' as http;
 
 class HomePage extends StatelessWidget {
@@ -15,8 +16,9 @@ class HomePage extends StatelessWidget {
     final Dio dio = Dio();
 
     Future<Weatherr> fetchWeather(Dio dio) async {
+      final appid = dotenv.env['appid'];
       final Response weatherData = await dio.get(
-          'https://api.openweathermap.org/data/2.5/weather?q=london&appid=8f2919ec7c284025269279ed86fc2369');
+          'https://api.openweathermap.org/data/2.5/weather?q=london&appid=$appid');
       //  final Response weatherData = await dio.get('api.openweathermap.org/data/2.5/weather', queryParameters: {'q': 'kaduna', 'appid': '8f2919ec7c284025269279ed86fc2369'});
 
       log(weatherData.data.toString());
