@@ -8,7 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:weatherapp_riverpod/core/models/weather.dart';
 
-Future<Weatherr> getWeather(String city) async {
+Future<Weatherr> getWeatherAPI(String city) async {
   final appid = dotenv.env['appid'];
   final Dio dio = Dio();
   final Response weatherData = await dio.get(
@@ -26,48 +26,42 @@ Future<Weatherr> getWeather(String city) async {
 
 class WeatherRepository {
   Future<Weatherr> fetchWeather(String city) async {
-    final weather = getWeather(city);
+    final weather = getWeatherAPI(city);
     return weather;
   }
 }
-
-final weatherProvider = StateNotifierProvider<WeatherNotifier, Weatherr>(
-  (ref) {
-    return WeatherNotifier(ref);
-  },
-);
 
 final weatherRepositoryProvider = Provider<WeatherRepository>((ref) {
   return WeatherRepository();
 });
 
-class WeatherNotifier extends StateNotifier<Weatherr> {
-  WeatherNotifier(this._ref)
-      : super(
-          const Weatherr(
-            coord: {},
-            weather: [{}],
-            main: {},
-            wind: {},
-            sys: {},
-            name: '',
-          ),
-        );
-
-  final StateNotifierProviderRef _ref;
-
+class AsyncWeatherNotifier extends AsyncNotifier<Weatherr> {
   Future<void> getWeather(String city) async {
-    final weather = await _ref.read(weatherRepositoryProvider).fetchWeather(city);
-    state = weather;
+    final weather =
+        await ref.read(weatherRepositoryProvider).fetchWeather(city);
+    state = AsyncData(weather);
   }
+
+  @override
+  Weatherr build() => const Weatherr(
+        coord: {},
+        weather: [{}],
+        main: {},
+        wind: {},
+        sys: {},
+        name: 'City Name',
+      );
 }
+
+final weatherProvider = AsyncNotifierProvider<AsyncWeatherNotifier, Weatherr>(
+    () => AsyncWeatherNotifier());
 
 class WeatherSearch extends HookConsumerWidget {
   const WeatherSearch({super.key});
 
   @override
   Widget build(BuildContext context, ref) {
-    final weather = AsyncData(ref.watch(weatherProvider));
+    final weather = ref.watch(weatherProvider);
     final cityController = useTextEditingController();
 
     return Scaffold(
