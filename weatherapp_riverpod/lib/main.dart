@@ -13,9 +13,8 @@ Future main() async {
       theme: FlexColorScheme.light(scheme: FlexScheme.wasabi).toTheme,
       darkTheme: FlexColorScheme.dark(scheme: FlexScheme.wasabi).toTheme,
       themeMode: ThemeMode.light,
-      home: const HomePage(
-        title: '',
-      ),
+      home:  const WeatherSearch(),
+      // home:  const HomePage(),
     ),
   ));
 }
