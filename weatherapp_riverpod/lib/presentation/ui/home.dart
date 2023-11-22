@@ -1,74 +1,27 @@
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:weatherapp_riverpod/core/models/weather.dart';
-
-Future<Weatherr> getWeatherAPI(String city) async {
-  final appid = dotenv.env['appid'];
-  final Dio dio = Dio();
-  final Response weatherData = await dio.get(
-    'https://api.openweathermap.org/data/2.5/weather',
-    queryParameters: {'q': city, 'appid': appid},
-  );
-  if (weatherData.statusCode == 200) {
-    final Weatherr weather =
-        Weatherr.fromJson(weatherData.data! as Map<String, dynamic>);
-    return weather;
-  } else {
-    throw Exception('Failed to load weather data');
-  }
-}
-
-class WeatherRepository {
-  Future<Weatherr> fetchWeather(String city) async {
-    final weather = getWeatherAPI(city);
-    return weather;
-  }
-}
-
-final weatherRepositoryProvider = Provider<WeatherRepository>((ref) {
-  return WeatherRepository();
-});
-
-class AsyncWeatherNotifier extends AsyncNotifier<Weatherr> {
-  Future<void> getWeather(String city) async {
-    final weather =
-        await ref.read(weatherRepositoryProvider).fetchWeather(city);
-    state = AsyncData(weather);
-  }
-
-  @override
-  Weatherr build() => const Weatherr(
-        coord: {},
-        weather: [{}],
-        main: {},
-        wind: {},
-        sys: {},
-        name: 'City Name',
-      );
-}
-
-final weatherProvider = AsyncNotifierProvider<AsyncWeatherNotifier, Weatherr>(
-    () => AsyncWeatherNotifier());
+import 'package:weatherapp_riverpod/presentation/providers/weather.dart';
 
 class WeatherSearch extends HookConsumerWidget {
   const WeatherSearch({super.key});
 
   @override
   Widget build(BuildContext context, ref) {
+    // ignore: invalid_use_of_protected_member
     final weather = ref.watch(weatherProvider);
+    final weatherData = AsyncData(weather);
     final cityController = useTextEditingController();
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Weather Search'),
       ),
-      body: weather.when(
+      body: weatherData.when(
         data: (Weatherr weather) {
           return Center(
             child: Column(

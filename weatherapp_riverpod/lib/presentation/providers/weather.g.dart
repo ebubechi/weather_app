@@ -6,7 +6,7 @@ part of 'weather.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchWeatherHash() => r'1f0afd48b6a7e9ee3de35d3b11e0fac64dee0a81';
+String _$fetchWeatherHash() => r'330b81f06a341fa9798c9f93de9f178d8163ff72';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -40,10 +40,10 @@ class FetchWeatherFamily extends Family<AsyncValue<Weatherr>> {
 
   /// See also [fetchWeather].
   FetchWeatherProvider call(
-    String location,
+    String city,
   ) {
     return FetchWeatherProvider(
-      location,
+      city,
     );
   }
 
@@ -52,7 +52,7 @@ class FetchWeatherFamily extends Family<AsyncValue<Weatherr>> {
     covariant FetchWeatherProvider provider,
   ) {
     return call(
-      provider.location,
+      provider.city,
     );
   }
 
@@ -75,11 +75,11 @@ class FetchWeatherFamily extends Family<AsyncValue<Weatherr>> {
 class FetchWeatherProvider extends AutoDisposeFutureProvider<Weatherr> {
   /// See also [fetchWeather].
   FetchWeatherProvider(
-    String location,
+    String city,
   ) : this._internal(
           (ref) => fetchWeather(
             ref as FetchWeatherRef,
-            location,
+            city,
           ),
           from: fetchWeatherProvider,
           name: r'fetchWeatherProvider',
@@ -90,7 +90,7 @@ class FetchWeatherProvider extends AutoDisposeFutureProvider<Weatherr> {
           dependencies: FetchWeatherFamily._dependencies,
           allTransitiveDependencies:
               FetchWeatherFamily._allTransitiveDependencies,
-          location: location,
+          city: city,
         );
 
   FetchWeatherProvider._internal(
@@ -100,10 +100,10 @@ class FetchWeatherProvider extends AutoDisposeFutureProvider<Weatherr> {
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.location,
+    required this.city,
   }) : super.internal();
 
-  final String location;
+  final String city;
 
   @override
   Override overrideWith(
@@ -118,7 +118,7 @@ class FetchWeatherProvider extends AutoDisposeFutureProvider<Weatherr> {
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        location: location,
+        city: city,
       ),
     );
   }
@@ -130,21 +130,21 @@ class FetchWeatherProvider extends AutoDisposeFutureProvider<Weatherr> {
 
   @override
   bool operator ==(Object other) {
-    return other is FetchWeatherProvider && other.location == location;
+    return other is FetchWeatherProvider && other.city == city;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, location.hashCode);
+    hash = _SystemHash.combine(hash, city.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin FetchWeatherRef on AutoDisposeFutureProviderRef<Weatherr> {
-  /// The parameter `location` of this provider.
-  String get location;
+  /// The parameter `city` of this provider.
+  String get city;
 }
 
 class _FetchWeatherProviderElement
@@ -152,7 +152,38 @@ class _FetchWeatherProviderElement
   _FetchWeatherProviderElement(super.provider);
 
   @override
-  String get location => (origin as FetchWeatherProvider).location;
+  String get city => (origin as FetchWeatherProvider).city;
 }
+
+String _$weatherRepositoryHash() => r'e406ca4f389bfe48dbf297ee8184e61b75f07f88';
+
+/// See also [weatherRepository].
+@ProviderFor(weatherRepository)
+final weatherRepositoryProvider =
+    AutoDisposeProvider<WeatherRepository>.internal(
+  weatherRepository,
+  name: r'weatherRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$weatherRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef WeatherRepositoryRef = AutoDisposeProviderRef<WeatherRepository>;
+String _$weatherHash() => r'4c4cd948426866648b6b75b70960379f1e8a1b0f';
+
+/// See also [Weather].
+@ProviderFor(Weather)
+final weatherProvider = AutoDisposeNotifierProvider<Weather, Weatherr>.internal(
+  Weather.new,
+  name: r'weatherProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$weatherHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$Weather = AutoDisposeNotifier<Weatherr>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
