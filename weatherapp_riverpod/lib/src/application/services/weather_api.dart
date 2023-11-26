@@ -1,7 +1,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:weatherapp_riverpod/core/models/weather.dart';
+import 'package:weatherapp_riverpod/src/domain/models/weather.dart';
 
 Future<Weatherr> getWeatherAPI(String city) async {
   final appid = dotenv.env['appid'];

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // import 'package:weatherapp_riverpod/main.dart';
-import 'package:weatherapp_riverpod/presentation/ui/home.dart';
+// import 'package:weatherapp_riverpod/presentation/ui/home.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

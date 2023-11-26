@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 // import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:weatherapp_riverpod/core/models/weather.dart';
-import 'package:weatherapp_riverpod/presentation/repositories/weather_repo.dart';
+import 'package:weatherapp_riverpod/src/data/repositories/weather_repo.dart';
+import 'package:weatherapp_riverpod/src/domain/models/weather.dart';
 
 part 'weather.g.dart';
 

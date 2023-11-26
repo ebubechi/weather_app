@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:weatherapp_riverpod/src/domain/models/weather.dart';
+import 'package:weatherapp_riverpod/src/presentation/providers/weather.dart';
 
-import 'package:weatherapp_riverpod/core/models/weather.dart';
-import 'package:weatherapp_riverpod/presentation/providers/weather.dart';
 
 class WeatherSearch extends HookConsumerWidget {
   const WeatherSearch({super.key});
