@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weatherapp_bloc/src/domain/models/weather.dart';
@@ -14,13 +15,13 @@ class WeatherPage extends StatelessWidget {
         child: BlocBuilder<WeatherBloc, WeatherState>(
           builder: (context, state) {
             if (state is WeatherInitial) {
-              return buildInitialInput();
+              return const BuildInitialInput();
             } else if (state is WeatherLoading) {
-              return buildLoading();
+              return const BuildLoading();
             } else if (state is WeatherLoaded) {
-              return buildColumnWithData(state.weather);
+              return BuildColumnWithData(weather: state.weather,);
             } else if (state is WeatherError) {
-              return buildInitialInput();
+              return const BuildInitialInput();
             }
             throw Exception('null exception');
           },
@@ -28,16 +29,34 @@ class WeatherPage extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget buildInitialInput() {
+class BuildInitialInput extends StatelessWidget {
+  const BuildInitialInput({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return const Center(child: CityInputField());
   }
+}
+class BuildLoading extends StatelessWidget {
+  const BuildLoading({super.key});
 
-  Widget buildLoading() {
+  @override
+  Widget build(BuildContext context) {
     return const Center(child: CircularProgressIndicator());
   }
+}
 
-  Widget buildColumnWithData(Weatherr weather) {
+class BuildColumnWithData extends StatelessWidget {
+  final Weatherr weather;
+  const BuildColumnWithData({
+    super.key,
+    required this.weather,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
