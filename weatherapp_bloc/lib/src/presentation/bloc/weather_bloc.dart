@@ -15,13 +15,16 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     on<GetWeather>((event, emit) async {
       emit(WeatherLoading());
       try {
-        final Weatherr weather = await weatherRepository.getWeather(event.city);
+        final WeatherModel weather =
+            await weatherRepository.getWeather(event.city);
         emit(WeatherLoaded(weather: weather));
       } catch (_) {
         emit(WeatherError());
       }
     });
-
+    on<GoBackToSearch>((event, emit) async {
+      emit(WeatherInitial());
+    });
     // Stream<WeatherState> mapEventToState(WeatherEvent event) async* {
     //   if (event is GetWeather) {
     //     yield WeatherLoading();

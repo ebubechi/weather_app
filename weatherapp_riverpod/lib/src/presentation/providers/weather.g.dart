@@ -34,7 +34,7 @@ class _SystemHash {
 const fetchWeatherProvider = FetchWeatherFamily();
 
 /// See also [fetchWeather].
-class FetchWeatherFamily extends Family<AsyncValue<Weatherr>> {
+class FetchWeatherFamily extends Family<AsyncValue<WeatherModel>> {
   /// See also [fetchWeather].
   const FetchWeatherFamily();
 
@@ -72,7 +72,7 @@ class FetchWeatherFamily extends Family<AsyncValue<Weatherr>> {
 }
 
 /// See also [fetchWeather].
-class FetchWeatherProvider extends AutoDisposeFutureProvider<Weatherr> {
+class FetchWeatherProvider extends AutoDisposeFutureProvider<WeatherModel> {
   /// See also [fetchWeather].
   FetchWeatherProvider(
     String city,
@@ -107,7 +107,7 @@ class FetchWeatherProvider extends AutoDisposeFutureProvider<Weatherr> {
 
   @override
   Override overrideWith(
-    FutureOr<Weatherr> Function(FetchWeatherRef provider) create,
+    FutureOr<WeatherModel> Function(FetchWeatherRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -124,7 +124,7 @@ class FetchWeatherProvider extends AutoDisposeFutureProvider<Weatherr> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<Weatherr> createElement() {
+  AutoDisposeFutureProviderElement<WeatherModel> createElement() {
     return _FetchWeatherProviderElement(this);
   }
 
@@ -142,13 +142,13 @@ class FetchWeatherProvider extends AutoDisposeFutureProvider<Weatherr> {
   }
 }
 
-mixin FetchWeatherRef on AutoDisposeFutureProviderRef<Weatherr> {
+mixin FetchWeatherRef on AutoDisposeFutureProviderRef<WeatherModel> {
   /// The parameter `city` of this provider.
   String get city;
 }
 
 class _FetchWeatherProviderElement
-    extends AutoDisposeFutureProviderElement<Weatherr> with FetchWeatherRef {
+    extends AutoDisposeFutureProviderElement<WeatherModel> with FetchWeatherRef {
   _FetchWeatherProviderElement(super.provider);
 
   @override
@@ -171,11 +171,11 @@ final weatherRepositoryProvider =
 );
 
 typedef WeatherRepositoryRef = AutoDisposeProviderRef<WeatherRepository>;
-String _$weatherHash() => r'4c4cd948426866648b6b75b70960379f1e8a1b0f';
+String _$weatherHash() => r'bbec4a07f0d8ade8994db4c9f7020fc26dfd5113';
 
 /// See also [Weather].
 @ProviderFor(Weather)
-final weatherProvider = AutoDisposeNotifierProvider<Weather, Weatherr>.internal(
+final weatherProvider = AutoDisposeNotifierProvider<Weather, WeatherModel>.internal(
   Weather.new,
   name: r'weatherProvider',
   debugGetCreateSourceHash:
@@ -184,6 +184,6 @@ final weatherProvider = AutoDisposeNotifierProvider<Weather, Weatherr>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef _$Weather = AutoDisposeNotifier<Weatherr>;
+typedef _$Weather = AutoDisposeNotifier<WeatherModel>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

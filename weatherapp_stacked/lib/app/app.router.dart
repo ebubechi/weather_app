@@ -9,7 +9,7 @@ import 'package:flutter/material.dart' as _i5;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i6;
-import 'package:weatherapp_stacked/ui/views/get_weather_view/get_weather_view_view.dart'
+import 'package:weatherapp_stacked/ui/views/get_weather_view/get_weather_view.dart'
     as _i4;
 import 'package:weatherapp_stacked/ui/views/home/home_view.dart' as _i2;
 import 'package:weatherapp_stacked/ui/views/startup/startup_view.dart' as _i3;
@@ -19,12 +19,12 @@ class Routes {
 
   static const startupView = '/startup-view';
 
-  static const getWeatherViewView = '/get-weather-view-view';
+  static const getWeatherView = '/get-weather-view';
 
   static const all = <String>{
     homeView,
     startupView,
-    getWeatherViewView,
+    getWeatherView,
   };
 }
 
@@ -39,7 +39,7 @@ class StackedRouter extends _i1.RouterBase {
       page: _i3.StartupView,
     ),
     _i1.RouteDef(
-      Routes.getWeatherViewView,
+      Routes.getWeatherView,
       page: _i4.GetWeatherView,
     ),
   ];
@@ -101,14 +101,14 @@ extension NavigatorStateExtension on _i6.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToGetWeatherViewView([
+  Future<dynamic> navigateToGetWeatherView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   ]) async {
-    return navigateTo<dynamic>(Routes.getWeatherViewView,
+    return navigateTo<dynamic>(Routes.getWeatherView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -143,14 +143,14 @@ extension NavigatorStateExtension on _i6.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithGetWeatherViewView([
+  Future<dynamic> replaceWithGetWeatherView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   ]) async {
-    return replaceWith<dynamic>(Routes.getWeatherViewView,
+    return replaceWith<dynamic>(Routes.getWeatherView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

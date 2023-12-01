@@ -16,3 +16,5 @@ class GetWeather extends WeatherEvent {
   @override
   List<Object> get props => [city];
 }
+
+class GoBackToSearch extends WeatherEvent{}

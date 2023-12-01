@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:weatherapp_stacked/ui/views/get_weather_view/get_weather_view_viewmodel.dart';
+import 'package:weatherapp_stacked/ui/views/get_weather_view/get_weather_viewmodel.dart';
 // import 'package:weatherapp_stacked/ui/common/app_colors.dart';
 // import 'package:weatherapp_stacked/ui/common/ui_helpers.dart';
 

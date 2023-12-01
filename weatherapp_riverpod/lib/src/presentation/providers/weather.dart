@@ -8,7 +8,7 @@ import 'package:weatherapp_riverpod/src/domain/models/weather.dart';
 part 'weather.g.dart';
 
 @riverpod
-Future<Weatherr> fetchWeather(
+Future<WeatherModel> fetchWeather(
   FetchWeatherRef ref,
   String city,
 ) async {
@@ -19,8 +19,8 @@ Future<Weatherr> fetchWeather(
     queryParameters: {'q': city, 'appid': appid},
   );
   if (weatherData.statusCode == 200) {
-    final Weatherr weather =
-        Weatherr.fromJson(weatherData.data! as Map<String, dynamic>);
+    final WeatherModel weather =
+        WeatherModel.fromJson(weatherData.data! as Map<String, dynamic>);
     return weather;
   } else {
     throw Exception('Failed to load weather data');
@@ -68,7 +68,7 @@ class Weather extends _$Weather {
   }
 
   @override
-  Weatherr build() => const Weatherr(
+  WeatherModel build() => const WeatherModel(
         coord: {},
         weather: [{}],
         main: {},

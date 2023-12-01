@@ -1,26 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+// import 'package:json_annotation/json_annotation.dart';
 part 'weather.g.dart';
+part 'weather.freezed.dart';
 
-@JsonSerializable()
-class Weatherr {
-  final Map<String, dynamic> coord;
-  final List<Map<String, dynamic>> weather;
-  final Map<String, dynamic> main;
-  final Map<String, dynamic> wind;
-  final Map<String, dynamic> sys;
-  final String name;
+@freezed
+class WeatherModel with _$WeatherModel {
+  const factory WeatherModel({
+    required Map<String, dynamic> coord,
+    required List<Map<String, dynamic>> weather,
+    required Map<String, dynamic> main,
+    required Map<String, dynamic> wind,
+    required Map<String, dynamic> sys,
+    required String name,
+  }) = _WeatherModel;
 
-  const Weatherr({
-    required this.coord,
-    required this.weather,
-    required this.main,
-    required this.wind,
-    required this.sys,
-    required this.name,
-  });
-
-  factory Weatherr.fromJson(Map<String, dynamic> json) => _$WeatherrFromJson(json);
-
-  Map<String, dynamic> toJson() => _$WeatherrToJson(this);
-
+  factory WeatherModel.fromJson(Map<String, dynamic> json) =>
+      _$WeatherModelFromJson(json);
 }

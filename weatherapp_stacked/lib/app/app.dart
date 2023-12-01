@@ -5,7 +5,7 @@ import 'package:weatherapp_stacked/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:weatherapp_stacked/services/weatherreposetory_service.dart';
-import 'package:weatherapp_stacked/ui/views/get_weather_view/get_weather_view_view.dart';
+import 'package:weatherapp_stacked/ui/views/get_weather_view/get_weather_view.dart';
 // @stacked-import
 
 @StackedApp(

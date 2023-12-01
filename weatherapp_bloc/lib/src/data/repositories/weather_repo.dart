@@ -7,8 +7,8 @@ class WeatherRepository {
 
   WeatherRepository({required this.weatherApiClient});
 
-  Future<Weatherr> getWeather(String city) async {
-    final Weatherr weather = await weatherApiClient.getWeatherAPI(city);
+  Future<WeatherModel> getWeather(String city) async {
+    final WeatherModel weather = await weatherApiClient.getWeatherAPI(city);
     return weather;
   }
 }

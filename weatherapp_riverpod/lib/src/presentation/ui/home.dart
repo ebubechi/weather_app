@@ -22,7 +22,7 @@ class WeatherSearch extends HookConsumerWidget {
         title: const Text('Weather Search'),
       ),
       body: weatherData.when(
-        data: (Weatherr weather) {
+        data: (WeatherModel weather) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
