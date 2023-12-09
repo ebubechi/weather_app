@@ -16,9 +16,12 @@ class CityInputField extends StatelessWidget {
         },
         textInputAction: TextInputAction.search,
         decoration: InputDecoration(
+          hintStyle: const TextStyle(color: Color(0xffffffff)),
+          fillColor: const Color(0xffffffff).withOpacity(0.5),
           hintText: 'Enter a city',
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
           suffixIcon: const Icon(Icons.search),
+          suffixIconColor: const Color(0xff21BCD0),
         ),
       ),
     );
