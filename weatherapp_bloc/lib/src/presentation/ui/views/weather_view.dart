@@ -12,6 +12,67 @@ class WeatherView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var nav = NavigationService();
+    var temp = weather.main['temp'];
+    double currentTemp = (5 / 9 * (temp - 32)) - 123;
+
+    String dayOfWeek(int i) {
+      switch (i) {
+        case 1:
+          return 'Monday';
+        case 2:
+          return 'Tuesday';
+        case 3:
+          return 'Wednessday';
+        case 4:
+          return 'Thursday';
+        case 5:
+          return 'Friday';
+        case 6:
+          return 'Saturday';
+        case 7:
+          return 'Sunday';
+        default:
+          return 'Monday';
+      }
+    }
+
+    String monthOfYear(int i) {
+      switch (i) {
+        case 1:
+          return 'Jan';
+        case 2:
+          return 'Feb';
+        case 3:
+          return 'Mar';
+        case 4:
+          return 'Apr';
+        case 5:
+          return 'May';
+        case 6:
+          return 'Jun';
+        case 7:
+          return 'Jul';
+        case 8:
+          return 'Aug';
+        case 9:
+          return 'Sept';
+        case 10:
+          return 'Oct';
+        case 11:
+          return 'Nov';
+        case 12:
+          return 'Dec';
+        default:
+          return 'Jan';
+      }
+    }
+
+    DateTime now = DateTime.now();
+    String time = '${now.hour}:${now.minute}';
+    int day = now.weekday;
+    int month = now.month;
+    String date = '${dayOfWeek(day)}, ${now.day} ${monthOfYear(month)}.';
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
@@ -88,18 +149,18 @@ class WeatherView extends StatelessWidget {
                 child: Image.asset('assets/images/Cloud-thunder.png'),
               ),
               const SizedBox(height: 20.0),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '21',
-                    style: TextStyle(
+                    currentTemp.ceil().toString(),
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 108,
                         fontWeight: FontWeight.bold),
                   ),
-                  Text(
+                  const Text(
                     '°',
                     style: TextStyle(
                       color: Colors.white70,
@@ -109,17 +170,17 @@ class WeatherView extends StatelessWidget {
                   ),
                 ],
               ),
-              const Text(
-                'Thunderstorm',
-                style: TextStyle(
+              Text(
+                weather.weather.elementAt(0)['description'],
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 32,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const Text(
-                'Monday, 17 oct.',
-                style: TextStyle(
+              Text(
+                date,
+                style: const TextStyle(
                   color: Colors.white70,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
@@ -140,9 +201,9 @@ class WeatherView extends StatelessWidget {
                   Column(
                     children: [
                       Image.asset('assets/images/wind.png'),
-                      const Text(
-                        '138 km/h',
-                        style: TextStyle(
+                      Text(
+                        '${weather.wind['speed']} km/h',
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
@@ -161,9 +222,9 @@ class WeatherView extends StatelessWidget {
                   Column(
                     children: [
                       Image.asset('assets/images/droplet.png'),
-                      const Text(
-                        '24 %',
-                        style: TextStyle(
+                      Text(
+                        '${weather.main['humidity']} %',
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
@@ -183,7 +244,7 @@ class WeatherView extends StatelessWidget {
                     children: [
                       Image.asset('assets/images/Cloud.png'),
                       const Text(
-                        '85 %',
+                        '5 %',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -297,17 +358,17 @@ class WeatherView extends StatelessWidget {
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          const Text(
-                            '21°',
-                            style: TextStyle(
+                          Text(
+                            '${currentTemp.ceil()}°',
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 24.0,
                             ),
                           ),
                           Image.asset('assets/images/Thunder.png'),
-                          const Text(
-                            '11:00',
-                            style: TextStyle(
+                          Text(
+                            time,
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 16.0,
                             ),

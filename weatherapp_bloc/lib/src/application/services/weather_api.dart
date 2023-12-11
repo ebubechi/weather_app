@@ -15,7 +15,7 @@ class WeatherApiClient {
     if (weatherData.statusCode == 200) {
       final WeatherModel weather =
           WeatherModel.fromJson(weatherData.data! as Map<String, dynamic>);
-      print(weather.sys['country']);
+      print(weather);
       return weather;
     } else {
       throw Exception('Failed to load weather data');
