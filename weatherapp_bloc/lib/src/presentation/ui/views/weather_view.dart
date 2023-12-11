@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weatherapp_bloc/src/application/services/navigation_api.dart';
 import 'package:weatherapp_bloc/src/domain/models/weather.dart';
 
 class WeatherView extends StatelessWidget {
@@ -10,12 +11,13 @@ class WeatherView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var nav = NavigationService();
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Container(
           width: double.infinity,
-          height: 550,
+          height: 650,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(65),
@@ -42,6 +44,28 @@ class WeatherView extends StatelessWidget {
           ),
           child: Column(
             children: [
+              const SizedBox(height: 48.0),
+              Row(
+                children: [
+                  const SizedBox(width: 15.0),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.arrow_back_ios_new,
+                      color: Colors.white,
+                    ),
+                    onPressed: () => nav.navPush(context),
+                  ),
+                  const SizedBox(width: 105.0),
+                  Text(
+                    weather.name,
+                    style: const TextStyle(
+                        fontSize: 24.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700),
+                    textAlign: TextAlign.left,
+                  ),
+                ],
+              ),
               const SizedBox(height: 25.0),
               Container(
                 decoration: BoxDecoration(
@@ -49,11 +73,12 @@ class WeatherView extends StatelessWidget {
                     borderRadius: const BorderRadius.all(
                       Radius.circular(20.0),
                     )),
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 15.0),
                   child: Text(
-                    'contry',
-                    style: TextStyle(
+                    weather.sys['country'].toString(),
+                    style: const TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w700),
                   ),
                 ),

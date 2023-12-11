@@ -15,8 +15,8 @@ Future main() async {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: FlexColorScheme.light(scheme: FlexScheme.wasabi).toTheme,
-      darkTheme: FlexColorScheme.dark(scheme: FlexScheme.wasabi).toTheme,
+      theme: FlexColorScheme.light(scheme: FlexScheme.aquaBlue).toTheme,
+      darkTheme: FlexColorScheme.dark(scheme: FlexScheme.aquaBlue).toTheme,
       themeMode: ThemeMode.light,
       home: BlocProvider(
           create: (BuildContext context) =>

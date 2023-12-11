@@ -15,39 +15,39 @@ class WeatherPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xff020A13),
-      appBar: AppBar(
-        backgroundColor: const Color(0xff21BCD0),
-        leading: BlocBuilder<WeatherBloc, WeatherState>(
-          builder: (context, state) {
-            var nav = NavigationService();
+      // appBar: AppBar(
+      //   backgroundColor: const Color(0xff21BCD0),
+      //   leading: BlocBuilder<WeatherBloc, WeatherState>(
+      //     builder: (context, state) {
+      //       var nav = NavigationService();
 
-            return state is WeatherInitial
-                ? Image.asset('assets/images/menu-icon.png')
-                : IconButton(
-                    icon: const Icon(Icons.arrow_back_ios_new),
-                    onPressed: () => nav.navPush(context),
-                  );
-          },
-        ),
-        title:
-            BlocBuilder<WeatherBloc, WeatherState>(builder: (context, state) {
-          if (state is WeatherInitial) {
-            return const Text('Weather');
-          } else if (state is WeatherLoaded) {
-            return Row(children: [
-              const SizedBox(width: 90.0),
-              const Icon(Icons.location_on_rounded),
-              const SizedBox(width: 10.0),
-              Text(
-                state.weather.name,
-                style: const TextStyle(
-                    fontSize: 26.0, fontWeight: FontWeight.w700),
-              )
-            ]);
-          }
-          return const Text('Weather');
-        }),
-      ),
+      //       return state is WeatherInitial
+      //           ? Image.asset('assets/images/menu-icon.png')
+      //           : IconButton(
+      //               icon: const Icon(Icons.arrow_back_ios_new),
+      //               onPressed: () => nav.navPush(context),
+      //             );
+      //     },
+      //   ),
+      //   title:
+      //       BlocBuilder<WeatherBloc, WeatherState>(builder: (context, state) {
+      //     if (state is WeatherInitial) {
+      //       return const Text('Weather');
+      //     } else if (state is WeatherLoaded) {
+      //       return Row(children: [
+      //         const SizedBox(width: 90.0),
+      //         const Icon(Icons.location_on_rounded),
+      //         const SizedBox(width: 10.0),
+      //         Text(
+      //           state.weather.name,
+      //           style: const TextStyle(
+      //               fontSize: 26.0, fontWeight: FontWeight.w700),
+      //         )
+      //       ]);
+      //     }
+      //     return const Text('Weather');
+      //   }),
+      // ),
       body: Center(
         child: BlocBuilder<WeatherBloc, WeatherState>(
           builder: (context, state) {
