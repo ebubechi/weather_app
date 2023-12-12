@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:weatherapp_bloc/src/application/services/navigation_api.dart';
 import 'package:weatherapp_bloc/src/domain/models/weather.dart';
+import 'package:weatherapp_bloc/src/presentation/bloc/weather_bloc.dart';
+import 'package:weatherapp_bloc/src/presentation/ui/helpers/dayofweek.dart';
+import 'package:weatherapp_bloc/src/presentation/ui/helpers/monthofyear.dart';
 
 class WeatherView extends StatelessWidget {
   final WeatherModel weather;
@@ -14,58 +17,6 @@ class WeatherView extends StatelessWidget {
     var nav = NavigationService();
     var temp = weather.main['temp'];
     double currentTemp = (5 / 9 * (temp - 32)) - 123;
-
-    String dayOfWeek(int i) {
-      switch (i) {
-        case 1:
-          return 'Monday';
-        case 2:
-          return 'Tuesday';
-        case 3:
-          return 'Wednessday';
-        case 4:
-          return 'Thursday';
-        case 5:
-          return 'Friday';
-        case 6:
-          return 'Saturday';
-        case 7:
-          return 'Sunday';
-        default:
-          return 'Monday';
-      }
-    }
-
-    String monthOfYear(int i) {
-      switch (i) {
-        case 1:
-          return 'Jan';
-        case 2:
-          return 'Feb';
-        case 3:
-          return 'Mar';
-        case 4:
-          return 'Apr';
-        case 5:
-          return 'May';
-        case 6:
-          return 'Jun';
-        case 7:
-          return 'Jul';
-        case 8:
-          return 'Aug';
-        case 9:
-          return 'Sept';
-        case 10:
-          return 'Oct';
-        case 11:
-          return 'Nov';
-        case 12:
-          return 'Dec';
-        default:
-          return 'Jan';
-      }
-    }
 
     DateTime now = DateTime.now();
     String time = '${now.hour}:${now.minute}';
@@ -106,26 +57,30 @@ class WeatherView extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 48.0),
-              Row(
-                children: [
-                  const SizedBox(width: 15.0),
-                  IconButton(
-                    icon: const Icon(
-                      Icons.arrow_back_ios_new,
-                      color: Colors.white,
-                    ),
-                    onPressed: () => nav.navPush(context),
-                  ),
-                  const SizedBox(width: 105.0),
-                  Text(
-                    weather.name,
-                    style: const TextStyle(
-                        fontSize: 24.0,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new,
                         color: Colors.white,
-                        fontWeight: FontWeight.w700),
-                    textAlign: TextAlign.left,
-                  ),
-                ],
+                      ),
+                      onPressed: () => nav.navPush(context, GoBackToSearch()),
+                    ),
+                    // const SizedBox(width: 105.0),
+                    Text(
+                      weather.name,
+                      style: const TextStyle(
+                          fontSize: 24.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700),
+                      textAlign: TextAlign.left,
+                    ),
+                    const Text('          '),
+                  ],
+                ),
               ),
               const SizedBox(height: 25.0),
               Container(

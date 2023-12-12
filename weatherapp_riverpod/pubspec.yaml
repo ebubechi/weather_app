@@ -50,10 +50,12 @@ flutter:
     - assets/images/Cloud.png
     - assets/images/Cloudy-day.png
     - assets/images/Cloudy-night.png
+    - assets/images/Cloud-thunder.png
     - assets/images/droplet.png
     - assets/images/menu-icon.png
     - assets/images/Thunder.png
     - assets/images/wind.png
+    - assets/images/night-moon.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

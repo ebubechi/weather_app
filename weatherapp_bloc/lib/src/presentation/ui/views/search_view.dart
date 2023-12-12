@@ -15,13 +15,6 @@ class SearchView extends StatelessWidget {
           const SizedBox(height: 48.0),
           Row(
             children: [
-              // IconButton(
-              //   icon: const Icon(
-              //     Icons.arrow_back_ios_new,
-              //     color: Color(0xff21BCD0),
-              //   ),
-              //   onPressed: () => nav.navPush(context),
-              // ),
               const SizedBox(width: 20.0),
               Image.asset('assets/images/menu-icon.png'),
               const SizedBox(width: 100.0),

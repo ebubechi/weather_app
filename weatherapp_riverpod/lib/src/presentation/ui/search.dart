@@ -1,11 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:weatherapp_riverpod/src/domain/models/weather.dart';
 import 'package:weatherapp_riverpod/src/presentation/providers/weather.dart';
-
+import 'package:weatherapp_riverpod/src/presentation/ui/widgets/input.dart';
 
 class WeatherSearch extends HookConsumerWidget {
   const WeatherSearch({super.key});
@@ -15,36 +14,19 @@ class WeatherSearch extends HookConsumerWidget {
     // ignore: invalid_use_of_protected_member
     final weather = ref.watch(weatherProvider);
     final weatherData = AsyncData(weather);
-    final cityController = useTextEditingController();
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Weather Search'),
+        leading: Image.asset('assets/images/menu-icon.png'),
       ),
       body: weatherData.when(
         data: (WeatherModel weather) {
-          return Center(
+          return const Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                if (weather.name.isNotEmpty)
-                  Text(
-                    weather.name,
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                TextField(
-                  controller: cityController,
-                  decoration: const InputDecoration(labelText: 'Enter city'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    ref.read(weatherProvider.notifier).getWeather(
-                          cityController.text,
-                        );
-                    cityController.clear();
-                  },
-                  child: const Text('Search'),
-                ),
+                CityInputField(),
               ],
             ),
           );
