@@ -1,1 +1,1 @@
-![ login page](https://github.com/ebubechi/WEATHERAPP/blob/main/Weather-App.png)
+![ login page](https://github.com/ebubechi/weather_app/blob/main/Weather-App.png)
